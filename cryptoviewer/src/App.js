@@ -3,7 +3,7 @@ import "./index.css";
 
 function App() {
   return (
-    <div class="full">
+    <div style={{height:"100vh"}}>
       <View/>
     </div>
   )
