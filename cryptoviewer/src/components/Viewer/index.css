@@ -1,0 +1,50 @@
+header{
+    background-color: aqua;
+    top:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 11.11%;
+}
+
+.element-margin{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.full{
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    width: 100%;
+    height: 86.48%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    background-color: aquamarine;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.graph{
+    background-color: maroon;
+    width: 59.89%;
+    height: 55.55%;
+}
+
+.tradeinfo{
+    background-color: rebeccapurple;
+    width: 36.25%;
+    height: 70.74%
+}
+
+.valorizacao{
+    background-color: darkblue;
+    width: 59.89%;
+    height: 13.05%;
+}
