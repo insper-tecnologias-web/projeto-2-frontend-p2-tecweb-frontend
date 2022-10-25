@@ -4,6 +4,7 @@ import "./index.css";
 export default function View() {
   return (
     <div className="grid-container">
+      <div className="header">FUDEU</div>
       <div className="item1">
         <div className="row">
         <p className="text-principal">BTC/ETH</p>
