@@ -4,9 +4,8 @@ import "./index.css";
 function App() {
   return (
     <div style={{height:"100vh"}}>
-      <View/>
+      <View></View>
     </div>
   )
 }
-
 export default App;
