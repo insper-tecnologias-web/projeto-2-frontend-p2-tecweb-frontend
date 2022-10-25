@@ -30,10 +30,26 @@
     background-color:bisque;
 }
 
+.row{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+
+}
+
 .grid-container{
     display: grid;
     height: 100%;
     gap: 1rem;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(8, 1fr);
+}
+
+.text-principal{
+    font-size: 2.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
