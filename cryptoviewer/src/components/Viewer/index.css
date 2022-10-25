@@ -57,7 +57,12 @@
 }
 
 .text-principal{
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
+}
+
+.title{
+    font: 2.5rem;
+    font-weight: bolder;
 }
