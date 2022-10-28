@@ -1,4 +1,4 @@
-import React from "react";
+import Candle from "../Candle/candle";
 import "./index.css";
 
 export default function View() {
@@ -6,7 +6,6 @@ export default function View() {
     <div className="grid-container">
       <div className="header">
         <p className="text-principal">Trending</p>
-        <img></img>
       </div>
       <div className="item1">
         <div className="row">
