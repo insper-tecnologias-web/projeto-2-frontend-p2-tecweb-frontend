@@ -25,20 +25,13 @@ class App extends Component {
 				name: "Intel Corporation",
 				yValueFormatString: "$###0.00",
 				xValueFormatString: "MMMM YY",
-				dataPoints: [this.props.dataPoints]
+				dataPoints:this.props.dataPoints
 			}
 		  ]
 		}
-		const chartProps = {
-			width: "100%",
-			height: "100%"
-		};
-
 		return (
 		<div>
-			<CanvasJSChart 
-       			options = {options}
-				chartProps = {chartProps}
+			<CanvasJSChart options = {options}
 				onRef={ref => this.chart = ref}
 			/>
 			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
