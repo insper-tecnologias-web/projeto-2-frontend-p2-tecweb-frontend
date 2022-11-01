@@ -10,7 +10,8 @@ async function getData(){
   // Banco de informações
   let candleData = [];
   // Axios
-  const dados = await axios.get("https://rest.coinapi.io/v1/exchangerate/ETH/USD/history?period_id=1DAY&time_start=2021-01-01T23:00:00&time_end=2021-06-06T23:00:00", options)
+  const dados = await axios.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=2016-01-01T00:00:00&time_end=2018-12-01T00:00:00", options)
+  console.log(dados)
   // Separação das Rates:
   for (let dado in dados.data){
       let info = dados.data[dado]
