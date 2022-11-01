@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./index.css";
+<<<<<<< Updated upstream
 import CandleChart from "../src/components/Candle/candle"
 
 const options = {   
@@ -24,6 +25,9 @@ async function getData(){
   }
   return candleData
 }
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 
 function App() {
 
@@ -58,6 +62,37 @@ function App() {
     <div style={{height:"100vh"}}>
       <CandleChart dataPoints={chartData}/>
     </div>
+=======
+import CandleChart from "../src/components/Candle/candle";
+import View from "../src/components/Viewer/index";
+
+const options = {   
+    headers: {"X-CoinAPI-Key":"43725491-667F-4F7F-A073-734061BA32CF"}
+}
+async function getData(base, quote, perio){
+  // Banco de informações
+  let candleData = [];
+  // Axios
+  const dados = await axios.get("https://rest.coinapi.io/v1/exchangerate/BTC/USD/history?period_id=1DAY&time_start=2016-01-01T00:00:00&time_end=2018-12-01T00:00:00", options)
+  console.log(dados)
+  // Separação das Rates:
+  for (let dado in dados.data){
+      let info = dados.data[dado]
+      let timeDate = info.time_period_end.split("T")[0].split("-")
+      let rateOpen = info.rate_open
+      let rateHigh = info.rate_high
+      let rateLow = info.rate_low
+      let rateClose = info.rate_close
+      candleData.push({x: new Date(timeDate[0],timeDate[1], timeDate[2]), y:[rateOpen, rateHigh, rateLow, rateClose]})
+  }
+  return candleData
+}
+
+function App() {
+
+  return (
+    <View></View>
+>>>>>>> Stashed changes
   )
 }
 export default App;
