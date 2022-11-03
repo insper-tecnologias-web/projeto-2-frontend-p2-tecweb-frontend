@@ -5,24 +5,21 @@ import "./index.css";
 
 function App() {
 
-  const [coins, setCoins] = useState([]);
+  // const [allCoins, setData] = React.useState(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/coins")
-      .then((response) => setCoins(response.data));
-  }, []);
+  // React.useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8000/all/possible/coins")
+  //     .then((response) => setCoins(response.allCoins));
+  // }, []);
 
-  console.log(coins);
+  // console.log(coins);
 
   return (
     <div>
       <div style={{height:"100vh"}}>
         <View></View>
       </div>
-      {/* <div> 
-        <p> {request} </p>
-      </div> */}
     </div>
   )
 }
