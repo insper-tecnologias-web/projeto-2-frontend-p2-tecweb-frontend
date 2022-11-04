@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+// import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import axios from "axios";
 
 export default function View(props) {
@@ -9,28 +9,29 @@ export default function View(props) {
   const [base, setBase] = useState("");
   const [quote, setQuote] = useState("");
 
-  useEffect(() => {   
-    axios
-    .get("http://localhost:8000/all/possible/coins")
-    .then((response) => {
+  // useEffect(() => {   
+  //   axios
+  //   .get("http://localhost:8000/all/possible/coins")
+  //   .then((response) => {
 
-      let aux = [];
-      for (let dado in response.data) {
-        aux.push(response.data[dado].assetId);
-    }
-    setAllCoins(aux)
-    });
-  }, []);
+  //     let aux = [];
+  //     for (let dado in response.data) {
+  //       aux.push(response.data[dado].assetId);
+  //   }
+  //   setAllCoins(aux)
+  //   });
+  // }, []);
 
   const setBaseQuote = (event) =>{
-    event.provenDefault();
+    event.preventDefault();
     axios
     .post("http://localhost:8000/add/coin/", {base: base, quote: quote})
     .then((response) => {
+      console.log(response)
       setBase("");
       setQuote("");
       props.atualiza();
-    });
+    })
   }
 
   const baseChanged = (event) => {
