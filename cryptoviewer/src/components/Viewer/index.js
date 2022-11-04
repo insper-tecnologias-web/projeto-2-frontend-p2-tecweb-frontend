@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CandleChart from "../Candle/candle";
 import "../Viewer/index.css";
 import axios from 'axios';
+// import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
 const graph = document.getElementById("grafico")
 let size = 456;
@@ -9,9 +10,12 @@ if (graph != null){
   size = graph.offsetHeight
 }
 
-export default function View() {
+export default function View(props) {
 
   const [chartData, setchartData] = useState([]);
+  const [allCoins, setAllCoins] = useState("");
+  const [base, setBase] = useState("");
+  const [quote, setQuote] = useState("");
 
   useEffect(() => {
     axios
@@ -31,10 +35,62 @@ export default function View() {
       });
   }, []);
 
+  useEffect(() => {   
+    axios
+    .get("http://localhost:8000/all/possible/coins")
+    .then((response) => {
+
+      let aux = [];
+      for (let dado in response.data) {
+        aux.push(response.data[dado].assetId);
+    }
+    setAllCoins(aux)
+    });
+  }, []);
+
+  const setBaseQuote = (event) =>{
+    event.preventDefault();
+    axios
+    .post("http://localhost:8000/add/coin/", {base: base, quote: quote})
+    .then((response) => {
+      console.log(response)
+      setBase("");
+      setQuote("");
+      props.atualiza();
+    })
+  }
+
+  const baseChanged = (event) => {
+    setBase(event.target.value);
+  }
+
+  const quoteChanged = (event) => {
+    setQuote(event.target.value);
+  }
+
   return (
     <div className="grid-container">
       <div className="header">
         <p className="text-principal">Trending</p>
+        <form class = "form" onSubmit={setBaseQuote}> 
+          <input 
+            className=""
+            type="text" 
+            name="base"
+            placeholder="Type base coin ..."
+            onChange={baseChanged}
+            value={base}
+          />
+          <input 
+            className=""    
+            type="text" 
+            name="quote"
+            placeholder="Type quote coin ..."
+            onChange={quoteChanged}
+            value={quote}
+          />
+          <button className="btn" type="submit">Search</button>
+        </form>
       </div>
       <div className="item1">
         <div className="row">
