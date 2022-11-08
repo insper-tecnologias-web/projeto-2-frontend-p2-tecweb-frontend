@@ -75,8 +75,11 @@ export default function View(props) {
   const [allCoins, setAllCoins] = useState("");
   const [base, setBase] = useState("");
   const [quote, setQuote] = useState("");
+  const [baseImg, setBaseImg] = useState("");
+  const [quoteImg, setQuoteImg] = useState("");
+
   // console.log(getExchangerate(selectedCoin, selectedQuote))
-  console.log(price)
+  // console.log(price)
   useEffect(() => {
     let fechamento = 0;
     let valorizacao = 0;
@@ -119,13 +122,25 @@ export default function View(props) {
     axios
     .post(`${host}add/coin/`, {base: base, quote: quote})
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       setSC(base);
       setSQ(quote);
       setBase("");
       setQuote("");
-      props.atualiza();
-    })
+      // props.atualiza();
+    });
+
+    axios
+    .get(`${host}getImgUrl/${base}/`)
+    .then((response) => {
+      setBaseImg(JSON.stringify(response.data.url).replaceAll('"', ''));
+    });
+
+    axios
+    .get(`${host}/getImgUrl/${quote}/`)
+    .then((response) => {
+      setQuoteImg(JSON.stringify(response.data.url));
+    });
   }
 
   const baseChanged = (event) => {
@@ -162,9 +177,12 @@ export default function View(props) {
       </div>
       <div className="item1">
         <div className="row">
-        <p className="text-principal">{selectedCoin} {selectedQuote}</p>
-        <p className="text-principal">{price.toFixed(2)}</p>
-        <p className="text-principal">{valorizao.toFixed(2)}%</p>
+          <div>
+            <img className="img" src={baseImg} alt="baseImg" height="50"/>
+          </div>
+          <p className="text-principal">{selectedCoin} {selectedQuote}</p>
+          <p className="text-principal">{price.toFixed(2)}</p>
+          <p className="text-principal">{valorizao.toFixed(2)}%</p>
         </div>
       </div>
       <div className="item2" id="grafico">
