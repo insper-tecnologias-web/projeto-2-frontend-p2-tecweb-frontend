@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CandleChart from "../Candle/candle";
+import CandleChart from "../Candle/candle.js";
 import "../Viewer/index.css";
 import axios from 'axios';
 import logo from "../Viewer/Bitcoin-icon.png"
@@ -81,7 +81,7 @@ export default function View(props) {
     let fechamento = 0;
     let valorizacao = 0;
     axios
-      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01T00:00:00/2022-11-02T00:00:00`)
+      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01T00:00:00/2022-11-09T00:00:00`)
       .then((response) => {
         let candleData = [];
         for (let dado in response.data){
@@ -98,7 +98,7 @@ export default function View(props) {
             setValorizacao((((rateClose/rateOpen)-1)*100));
           }
         }
-        setPrice(fechamento); 
+        setPrice(fechamento);
         setchartData(candleData);
       });
   }, []);
