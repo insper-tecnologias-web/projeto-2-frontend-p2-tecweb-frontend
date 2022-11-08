@@ -182,20 +182,13 @@ export default function View(props) {
         </form>
       </div>
       <div className="item1">
-<<<<<<< HEAD
         <div className="row basic-info-container">
-          <p className="text-principal basic-info">{selectedCoin} {selectedQuote}</p>
-          <p className="text-principal basic-info">{price.toFixed(2)}</p>
-          <p className="text-principal basic-info">{valorizao.toFixed(2)}%</p>
-=======
-        <div className="row">
           <div>
             <img className="img" src={baseImg} alt="baseImg" height="50"/>
           </div>
           <p className="text-principal">{selectedCoin} {selectedQuote}</p>
           <p className="text-principal">{price.toFixed(2)}</p>
           <p className="text-principal">{valorizao.toFixed(2)}%</p>
->>>>>>> 493bd2a34465b231ef45a20ce9fd5677b1120a6a
         </div>
       </div>
       <div className="item2" id="grafico">
