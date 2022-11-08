@@ -72,6 +72,8 @@ export default function View(props) {
   const [baseImg, setBaseImg] = useState("");
   const [quoteImg, setQuoteImg] = useState("");
   const [loadingGraph, setloading] = useState("");
+  const[askprice, setAskPrice] = useState(0);
+  const[bidprice, setBidPrice] = useState(0);
 
   // console.log(getExchangerate(selectedCoin, selectedQuote))
   // console.log(price)
@@ -141,6 +143,13 @@ export default function View(props) {
     .then((response) => {
       setQuoteImg(JSON.stringify(response.data.url).replaceAll('"',''));
     });
+
+    axios
+    .get(`${host}price/${base}/${quote}`)
+    .then((response) => {
+      setAskPrice(response["data"]["ask_price"]);
+      setBidPrice(response["data"]["bid_price"]);
+    });
   }
 
   const baseChanged = (event) => {
@@ -197,7 +206,8 @@ export default function View(props) {
         <CandleChart className="item2" dataPoints={chartData} ytitle={""} title={loadingGraph} name={"Flutuação"} moedaComparadora={selectedQuote} height={graphHeight}/>
       </div>
       <div className="item3">
-        <p className="saiba-mais">Saiba Mais</p>
+        <p className="saiba-mais">ask_price = {askprice}</p>
+        <p className="saiba-mais">bid_price = {bidprice}</p>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { PieCenter } from "@syncfusion/ej2-charts";
 import React, { Component } from "react";
 import CanvasJSReact from '../../assets/canvasjs.react';
 
