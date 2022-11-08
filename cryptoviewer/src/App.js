@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import View from "./components/Viewer";
 import "./index.css";
 

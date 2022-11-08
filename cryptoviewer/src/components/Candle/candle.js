@@ -9,12 +9,14 @@ class App extends Component {
 			theme: "dark1", // "light1", "light2", "dark1", "dark2"
 			animationEnabled: true,
 			exportEnabled: true,
+			responsive:true,
 			height: this.props.height,
 			title:{
 				text: this.props.title,
 				horizontalAlign:"left",
 			},
 			axisY: {
+				title: this.props.ytitle,
 				margin:10,
 			},
 			axisX: {
@@ -27,7 +29,7 @@ class App extends Component {
 				risingColor: 'green',
 				color:'red',
 				name: "",
-				yValueFormatString: "$###0.00",
+				yValueFormatString: "$####0.000000",
 				dataPoints:this.props.dataPoints,
 			}
 		  ]

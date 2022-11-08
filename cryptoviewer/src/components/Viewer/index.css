@@ -14,11 +14,10 @@
 }
 
 .item3{
-    grid-column-start: 3;
-    grid-column-end: 5;
+    grid-column-start: 2;
+    grid-column-end: 6;
     grid-row-start: 7;
     grid-row-end: 8;
-    background-color:bisque;
     margin-top: 3rem;
     border-radius: 2rem;
     margin-left: 8rem;
@@ -141,4 +140,12 @@
 .saiba-mais{
     font-size: larger;
     text-align: center;
+}
+
+.venda{
+    background-color: #60F670;
+}
+
+.compra{
+    background-color: #D44728;
 }
