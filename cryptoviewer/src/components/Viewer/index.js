@@ -79,7 +79,7 @@ export default function View(props) {
     let fechamento = 0;
     let valorizacao = 0;
     axios
-      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01/2022-11-01`)
+      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01T00:00:00/2022-11-02T00:00:00`)
       .then((response) => {
         let candleData = [];
         for (let dado in response.data){
@@ -90,12 +90,14 @@ export default function View(props) {
           let rateLow = info.rate_low
           let rateClose = info.rate_close
           fechamento = rateClose
-          valorizacao = ((rateClose/rateOpen)-1)*100
-          candleData.push({x: new Date(timeDate[0],timeDate[1], timeDate[2]), y:[rateOpen, rateHigh, rateLow, rateClose]})
+          if (rateClose != rateOpen & rateLow!=rateHigh){
+            console.log(timeDate)
+            candleData.push({x: new Date(timeDate[0],timeDate[1]-1, timeDate[2]-1), y:[rateOpen, rateHigh, rateLow, rateClose]})
+            setValorizacao((((rateClose/rateOpen)-1)*100));
+          }
         }
-        setPrice(fechamento)
-        setchartData(candleData)
-        setValorizacao(valorizacao)
+        setPrice(fechamento); 
+        setchartData(candleData);
       });
   }, []);
 

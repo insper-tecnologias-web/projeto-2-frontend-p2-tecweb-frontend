@@ -15,6 +15,9 @@ class App extends Component {
 				text: this.props.title,
 				horizontalAlign:"left",
 			},
+			axisY: {
+				margin:10,
+			},
 			axisX: {
 				valueFormatString: "D/M",
 				margin:20,
@@ -27,7 +30,6 @@ class App extends Component {
 				name: "",
 				yValueFormatString: "$###0.00",
 				dataPoints:this.props.dataPoints,
-				indexLabelOrientation:"vertical",
 			}
 		  ]
 		}
