@@ -31,7 +31,7 @@ export default function View(props) {
     let fechamento = 0;
     let valorizacao = 0;
     let candleData = [];
-    if (selectedCoin == "Base"){
+    if (selectedCoin != "Base"){
       axios
       .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01T00:00:00/2022-11-09T00:00:00`)
       .then((response) => {
