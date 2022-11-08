@@ -68,21 +68,18 @@ export default function View(props) {
   const [allCoins, setAllCoins] = useState("");
   const [base, setBase] = useState("");
   const [quote, setQuote] = useState("");
-<<<<<<< HEAD
   const [graphHeight, setGraphHeight] = useState(0.00);
-
-=======
   const [baseImg, setBaseImg] = useState("");
   const [quoteImg, setQuoteImg] = useState("");
+  const [loadingGraph, setloading] = useState("");
 
   // console.log(getExchangerate(selectedCoin, selectedQuote))
   // console.log(price)
->>>>>>> 493bd2a34465b231ef45a20ce9fd5677b1120a6a
   useEffect(() => {
     let fechamento = 0;
     let valorizacao = 0;
     axios
-      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2016-01-01T00:00:00/2017-12-01T00:00:00`)
+      .get(`${host}timeSeries/${selectedCoin}/${selectedQuote}/1DAY/2022-10-01/2022-11-01`)
       .then((response) => {
         let candleData = [];
         for (let dado in response.data){
@@ -140,9 +137,9 @@ export default function View(props) {
     });
 
     axios
-    .get(`${host}/getImgUrl/${quote}/`)
+    .get(`${host}getImgUrl/${quote}/`)
     .then((response) => {
-      setQuoteImg(JSON.stringify(response.data.url));
+      setQuoteImg(JSON.stringify(response.data.url).replaceAll('"',''));
     });
   }
 
@@ -183,18 +180,25 @@ export default function View(props) {
       </div>
       <div className="item1">
         <div className="row basic-info-container">
-          <div>
-            <img className="img" src={baseImg} alt="baseImg" height="50"/>
+          <div className="row basic-info">
+            <img className="img-base" src={baseImg} alt="baseImg"/>
+            <p className="text-principal">{selectedCoin}/{selectedQuote}</p>
+            <img className="img-quote" src={quoteImg} alt="baseImg"/>
           </div>
-          <p className="text-principal">{selectedCoin} {selectedQuote}</p>
-          <p className="text-principal">{price.toFixed(2)}</p>
-          <p className="text-principal">{valorizao.toFixed(2)}%</p>
+          <div className="row basic-info">
+            <p className="text-principal">{price.toFixed(2)}</p>
+          </div>
+          <div className="row basic-info">
+            <p className="text-principal">{valorizao.toFixed(2)}%</p>
+          </div>
         </div>
       </div>
       <div className="item2" id="grafico">
-        <CandleChart className="item2" dataPoints={chartData} ytitle={""} title={selectedCoin+"/"+selectedQuote} name={"Flutuação"} moedaComparadora={selectedQuote} height={graphHeight}/>
+        <CandleChart className="item2" dataPoints={chartData} ytitle={""} title={loadingGraph} name={"Flutuação"} moedaComparadora={selectedQuote} height={graphHeight}/>
       </div>
-      <div className="item3">Texto3</div>
+      <div className="item3">
+        <p className="saiba-mais">Saiba Mais</p>
+      </div>
     </div>
   );
 }
