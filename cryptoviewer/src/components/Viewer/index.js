@@ -68,8 +68,16 @@ export default function View(props) {
   const [allCoins, setAllCoins] = useState("");
   const [base, setBase] = useState("");
   const [quote, setQuote] = useState("");
+<<<<<<< HEAD
   const [graphHeight, setGraphHeight] = useState(0.00);
 
+=======
+  const [baseImg, setBaseImg] = useState("");
+  const [quoteImg, setQuoteImg] = useState("");
+
+  // console.log(getExchangerate(selectedCoin, selectedQuote))
+  // console.log(price)
+>>>>>>> 493bd2a34465b231ef45a20ce9fd5677b1120a6a
   useEffect(() => {
     let fechamento = 0;
     let valorizacao = 0;
@@ -117,13 +125,25 @@ export default function View(props) {
     axios
     .post(`${host}add/coin/`, {base: base, quote: quote})
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       setSC(base);
       setSQ(quote);
       setBase("");
       setQuote("");
-      props.atualiza();
-    })
+      // props.atualiza();
+    });
+
+    axios
+    .get(`${host}getImgUrl/${base}/`)
+    .then((response) => {
+      setBaseImg(JSON.stringify(response.data.url).replaceAll('"', ''));
+    });
+
+    axios
+    .get(`${host}/getImgUrl/${quote}/`)
+    .then((response) => {
+      setQuoteImg(JSON.stringify(response.data.url));
+    });
   }
 
   const baseChanged = (event) => {
@@ -162,10 +182,20 @@ export default function View(props) {
         </form>
       </div>
       <div className="item1">
+<<<<<<< HEAD
         <div className="row basic-info-container">
           <p className="text-principal basic-info">{selectedCoin} {selectedQuote}</p>
           <p className="text-principal basic-info">{price.toFixed(2)}</p>
           <p className="text-principal basic-info">{valorizao.toFixed(2)}%</p>
+=======
+        <div className="row">
+          <div>
+            <img className="img" src={baseImg} alt="baseImg" height="50"/>
+          </div>
+          <p className="text-principal">{selectedCoin} {selectedQuote}</p>
+          <p className="text-principal">{price.toFixed(2)}</p>
+          <p className="text-principal">{valorizao.toFixed(2)}%</p>
+>>>>>>> 493bd2a34465b231ef45a20ce9fd5677b1120a6a
         </div>
       </div>
       <div className="item2" id="grafico">
