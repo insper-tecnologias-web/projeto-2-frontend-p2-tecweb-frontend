@@ -2,15 +2,9 @@ import React, { useEffect, useState } from "react";
 import CandleChart from "../Candle/candle";
 import "../Viewer/index.css";
 import axios from 'axios';
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import logo from "../Viewer/Bitcoin-icon.png"
 
 const host = "http://localhost:8000/";
-
-const graph = document.getElementById("grafico")
-let size = 400;
-if (graph != null){
-  size = graph.offsetHeight
-}
 
 // function getExchangerate(coin, quote){
 //   axios
@@ -71,12 +65,11 @@ export default function View(props) {
   const [selectedQuote, setSQ] = useState("Quote");
   const [price, setPrice] = useState(0.00);
   const [valorizao, setValorizacao] = useState(0.00);
-  // setValorizacao(0.00)
   const [allCoins, setAllCoins] = useState("");
   const [base, setBase] = useState("");
   const [quote, setQuote] = useState("");
-  // console.log(getExchangerate(selectedCoin, selectedQuote))
-  console.log(price)
+  const [graphHeight, setGraphHeight] = useState(0.00);
+
   useEffect(() => {
     let fechamento = 0;
     let valorizacao = 0;
@@ -99,6 +92,11 @@ export default function View(props) {
         setchartData(candleData)
         setValorizacao(valorizacao)
       });
+  }, []);
+
+  useEffect(() => {
+    const graph = document.getElementById("grafico")
+    setGraphHeight(graph.offsetHeight)
   }, []);
 
   useEffect(() => {   
@@ -139,36 +137,39 @@ export default function View(props) {
   return (
     <div className="grid-container">
       <div className="header">
-        <p className="text-principal">Trending</p>
-        <form class = "form" onSubmit={setBaseQuote}> 
+        <div className="row">
+          <img src={logo} className="logo"></img>
+          <p className="text-name">CryptoViewer</p>
+        </div>
+        <form className= "form-container" onSubmit={setBaseQuote}> 
           <input 
-            className=""
+            className="input-base"
             type="text" 
             name="base"
-            placeholder="Type base coin ..."
+            placeholder="Base coin"
             onChange={baseChanged}
             value={base}
           />
           <input 
-            className=""    
+            className="input-quote"    
             type="text" 
             name="quote"
-            placeholder="Type quote coin ..."
+            placeholder="Quote coin"
             onChange={quoteChanged}
             value={quote}
           />
-          <button className="btn" type="submit">Search</button>
+          <button className="input-search" type="submit">Search</button>
         </form>
       </div>
       <div className="item1">
-        <div className="row">
-        <p className="text-principal">{selectedCoin} {selectedQuote}</p>
-        <p className="text-principal">{price.toFixed(2)}</p>
-        <p className="text-principal">{valorizao.toFixed(2)}%</p>
+        <div className="row basic-info-container">
+          <p className="text-principal basic-info">{selectedCoin} {selectedQuote}</p>
+          <p className="text-principal basic-info">{price.toFixed(2)}</p>
+          <p className="text-principal basic-info">{valorizao.toFixed(2)}%</p>
         </div>
       </div>
       <div className="item2" id="grafico">
-        <CandleChart className="item2" dataPoints={chartData} ytitle={""} title={selectedCoin+"/"+selectedQuote} name={"Flutuação"} moedaComparadora={selectedQuote} height={size}/>
+        <CandleChart className="item2" dataPoints={chartData} ytitle={""} title={selectedCoin+"/"+selectedQuote} name={"Flutuação"} moedaComparadora={selectedQuote} height={graphHeight}/>
       </div>
       <div className="item3">Texto3</div>
     </div>

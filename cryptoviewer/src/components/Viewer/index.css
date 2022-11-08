@@ -3,23 +3,22 @@
     grid-column-end: 7;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: aquamarine;
 }
 
 .item2{
-    grid-column-start: 1;
-    grid-column-end: 7;
+    grid-column-start: 2;
+    grid-column-end: 6;
     grid-row-start: 3;
     grid-row-end: 7;
-    background-color:bisque;
 }
 
 .item3{
-    grid-column-start: 5;
-    grid-column-end: 1;
+    grid-column-start: 2;
+    grid-column-end: 6;
     grid-row-start: 7;
     grid-row-end: 9;
     background-color:bisque;
+    margin-bottom: 0.5rem;
 }
 
 .item4{
@@ -36,6 +35,12 @@
     grid-row-start: 1;
     grid-row-end: 2;
     background-color:blue;
+
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .row{
@@ -49,6 +54,7 @@
 }
 
 .grid-container{
+    background-image: url("istockphoto-1132628790-612x612.jpg");
     display: grid;
     height: 100%;
     gap: 1rem;
@@ -62,6 +68,10 @@
     margin-right: 2rem;
 }
 
+.text-name{
+    font-size: 2rem;
+}
+
 .title{
     font: 2.5rem;
     font-weight: bolder;
@@ -71,20 +81,52 @@
     height: 800px;
 }
 
-.form{
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    align-items: center;
-    text-align: center;
-    padding: 0.5rem;
-}
-
-.input{
-    margin-left: 1rem;
-    margin-right: 1rem;
+.form-container{
+    margin-right: 2rem;
 }
 
 .button{
     cursor: pointer;
+}
+
+.input-base{
+    width: 10rem;
+    height: 4rem;
+    margin-right: 0.6rem;   
+    border-radius: 1.3rem;
+    text-align: center;
+    font-size: large;
+}
+
+.input-quote{
+    width: 10rem;
+    height: 4rem;
+    margin-right: 0.6rem;   
+    border-radius: 1.3rem;
+    text-align: center;
+    font-size: large;
+}
+
+.input-search{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 2rem;
+}
+
+.basic-info{
+    width: 14rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: #323232;
+}
+
+.basic-info-container{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo{
+    height: 4rem;
+    margin-left: 1rem;
 }
