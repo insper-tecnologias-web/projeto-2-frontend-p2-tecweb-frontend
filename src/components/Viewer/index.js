@@ -5,7 +5,7 @@ import axios from 'axios';
 import logo from "../Viewer/Bitcoin-icon.png"
 
 
-const host = "https://sheltered-headland-73544.herokuapp.com/";
+const host = "http://localhost:8000/";
 
 export default function View(props) {
 
